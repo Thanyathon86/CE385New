@@ -1,0 +1,126 @@
+{
+  "info": {
+    "name": "CE385 Week7 — Prisma API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8080"
+    },
+    {
+      "key": "user_id",
+      "value": "วาง Userid ที่ได้จาก POST /user ที่นี่"
+    },
+    {
+      "key": "post_id",
+      "value": "วาง postId ที่ได้จาก POST /posts ที่นี่"
+    }
+  ],
+  "item": [
+    {
+      "name": "👤 USER",
+      "item": [
+        {
+          "name": "POST /user — สร้าง user ใหม่",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{base_url}}/user",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"สมชาย\",\n  \"email\": \"somchai@dpu.ac.th\"\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          }
+        },
+        {
+          "name": "GET /users — ดึง user ทั้งหมด",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/users"
+          }
+        },
+        {
+          "name": "GET /users/email/:email — ดึง user จาก email",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/users/email/somchai@dpu.ac.th"
+          }
+        },
+        {
+          "name": "PUT /user/:id — แก้ไข user",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{base_url}}/user/{{user_id}}",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"สมชาย อัปเดต\",\n  \"email\": \"somchai-new@dpu.ac.th\"\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          }
+        },
+        {
+          "name": "DELETE /users/:id — ลบ user",
+          "request": {
+            "method": "DELETE",
+            "url": "{{base_url}}/users/{{user_id}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "📝 POST",
+      "item": [
+        {
+          "name": "POST /posts — สร้างโพสต์ใหม่",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{base_url}}/posts",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"โพสต์แรก\",\n  \"content\": \"เนื้อหาโพสต์แรก\",\n  \"authorId\": \"{{user_id}}\"\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          }
+        },
+        {
+          "name": "GET /posts — ดึงโพสต์ทั้งหมด",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/posts"
+          }
+        },
+        {
+          "name": "GET /posts/:id — ดึงโพสต์รายการเดียว",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/posts/{{post_id}}"
+          }
+        },
+        {
+          "name": "PUT /posts/:id — อัปเดตโพสต์",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{base_url}}/posts/{{post_id}}",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"โพสต์อัปเดต\",\n  \"content\": \"เนื้อหาใหม่\",\n  \"published\": true\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          }
+        },
+        {
+          "name": "DELETE /posts/:id — ลบโพสต์",
+          "request": {
+            "method": "DELETE",
+            "url": "{{base_url}}/posts/{{post_id}}"
+          }
+        }
+      ]
+    }
+  ]
+}
